@@ -1,5 +1,6 @@
 import { ApolloError, UserInputError } from 'apollo-server';
 import { Room, Message } from '../mongos';
+import { ps } from './Subscription';
 
 const Mutation = {
 	addRoom: async (_, args) => {
@@ -19,7 +20,7 @@ const Mutation = {
 		}
 	},
 
-	addMessage: async (_, args) => {
+	addMessage: async (_, args, ctx) => {
 		try {
 			/* Find the room, stop if cannot find it */
 			const findRoom = await Room.findOne({ roomName: args.roomName });
@@ -35,6 +36,9 @@ const Mutation = {
 			findRoom.messages.push(newMessage);
 			await findRoom.save();
 
+			/* Publish the new message to anyone in the room */
+			await ctx.pubsub.publish(args.roomName, { subscribeRoom: newMessage });
+			
 			return newMessage;
 
 		} catch (E) {

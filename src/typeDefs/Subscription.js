@@ -2,7 +2,7 @@ import { gql } from 'apollo-server';
 
 const Subscription = gql`
 	type Subscription {
-		messages: Message
+		subscribeRoom(roomName: String): Message
 	}
 `;
 
