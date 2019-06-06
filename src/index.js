@@ -1,5 +1,5 @@
 import { ApolloServer, PubSub } from 'apollo-server';
-import mongoose, { mongo } from 'mongoose';
+import mongoose from 'mongoose';
 
 import typeDefs from './typeDefs';
 import resolvers from './resolvers';
@@ -17,4 +17,4 @@ const server = new ApolloServer({
 	})
 });
 
-server.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
+server.listen(PORT, () => console.log(`Chat app listening on port ${PORT}!`));
