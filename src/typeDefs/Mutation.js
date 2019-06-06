@@ -2,7 +2,8 @@ import { gql } from 'apollo-server';
 
 const Mutation = gql`
 	type Mutation {
-		addMessage(roomName: String, userName: String, message: String): String
+		addRoom(roomName: String): Room
+		addMessage(roomName: String, userName: String, message: String): Message
 	}
 `;
 
