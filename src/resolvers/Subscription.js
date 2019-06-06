@@ -1,5 +1,3 @@
-import { PubSub } from "apollo-server";
-const ps = new PubSub();
 
 const Subscription = {
 	subscribeRoom: {
@@ -9,5 +7,4 @@ const Subscription = {
 	}
 };
 
-export { ps };
 export default Subscription;
