@@ -9,11 +9,10 @@ const Query = {
 			if (!findRoom) {
 				throw new UserInputError("Can't find the room");
 			}
-			console.log(1);
+
 			/* Populate the messages field and return the room */
 			await findRoom.populate("messages").execPopulate();
-			console.log(2);
-			console.log(findRoom)
+
 			return findRoom;
 		} catch (E) {
 			throw new ApolloError("can't getRoom", E);
